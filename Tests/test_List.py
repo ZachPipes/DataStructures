@@ -1,5 +1,5 @@
 import unittest
-from MyList import MyList
+from Structures.MyList import MyList
 
 class TestMyList(unittest.TestCase):
     def setUp(self):
