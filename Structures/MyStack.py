@@ -1,24 +1,29 @@
+from Structures.MyLinkedList import MyLinkedList, MyNode
+
 class MyStack:
     def __init__(self):
-        """Initialize an empty stack"""
-        pass
+        self.stack = MyLinkedList()
 
     def push(self, value):
-        """Push a value onto the stack"""
-        pass
+        self.stack.head = MyNode(value, self.stack.head)
 
     def pop(self):
-        """Remove and return the top value of the stack"""
-        pass
+        if self.stack.head is None:
+            raise IndexError("pop: Empty stack.")
+        value = self.stack.head.value
+        self.stack.delete_head()
+
+        return value
 
     def peek(self):
-        """Return the top value without removing it"""
-        pass
+        if self.stack.head is None:
+            raise IndexError("peek: Empty stack.")
+        return self.stack.head.value
 
     def is_empty(self):
-        """Return True if the stack is empty, else False"""
-        pass
+        if self.stack.head is not None:
+            return False
+        return True
 
     def size(self):
-        """Return the number of elements in the stack"""
-        pass
+        return self.stack.size()
