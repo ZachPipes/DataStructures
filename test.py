@@ -1,5 +1,16 @@
 from Structures.MyLinkedList import MyLinkedList, MyNode
 from Structures.MyHashMap import MyHashMap
+import unittest
+
+def test():
+    # Discover all tests in the 'tests' folder
+    loader = unittest.TestLoader()
+    suite = loader.discover("Tests")  # adjust folder name
+
+    runner = unittest.TextTestRunner()
+    runner.run(suite)
+
+test()
 
 # ll = MyLinkedList()
 #
