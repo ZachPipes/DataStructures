@@ -3,7 +3,6 @@ class MyNode:
         self.value = value
         self.next = nextNode
 
-
 class MyLinkedList:
     def __init__(self):
         self.head = None
@@ -78,6 +77,7 @@ class MyLinkedList:
         # If one node
         if self.head.next is None:
             self.head = None
+            return
 
         # Iterates to the last node
         nodeIter = self.head

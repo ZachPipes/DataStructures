@@ -2,7 +2,7 @@ class MyList:
     def __init__(self, capacity=10):
         """Initialize the array with optional capacity"""
         self.data = [None] * capacity # Internal storage
-        self.capacity = capacity      # Maximum allocated space
+        self.capacity = capacity      # Maximum allocated memory
         self.length = 0               # Current # of elements
 
     def append(self, value):
@@ -16,14 +16,15 @@ class MyList:
 
     def extend(self, values):
         """Add a list of values to the end of the array"""
+        # Uses append to add all values to the list
         for i in range(len(values)):
             self.append(values[i])
 
     def insert(self, index, value):
         """Insert value at a specific index"""
         # Edge Cases
-        if index > self.length:                # If the index is out of bounds
-            raise IndexError
+        if index > self.length:                 # If the index is out of bounds raise
+            raise IndexError("insert: Index out of bounds")
         if self.length == self.capacity:        # Doubling the capacity if maxed out
             self.double_capacity()
 
@@ -37,7 +38,7 @@ class MyList:
         """Remove first occurrence of value"""
         for i in range(len(self)):                  # Iterate through each element
             if self.data[i] == value:               # Is the element the value to remove?
-                for j in range(i, self.length - 1):  # Iterate through each element after the ith value
+                for j in range(i, self.length - 1): # Iterate through each element after the ith value
                     self.data[j] = self.data[j + 1] # Replace the jth element with the next
                 self.data[self.length - 1] = None   # Delete the ith element
                 self.length -= 1                    # Reduce array size by 1
@@ -50,15 +51,16 @@ class MyList:
         if self.length == 0:
             raise IndexError("Pop: from empty array")
 
-        if index is None:
-            index = self.length - 1
-        elif index < 0 or index >= self.length:
+        if index is None:                       # If the user has not selected an index
+            index = self.length - 1             # Set index to the end
+        elif index < 0 or index >= self.length: # If index is out of bounds
             raise IndexError("Pop: index out of range")
 
-        if index == self.length - 1:
-            popped = self.data[index]
-            self.data[index] = None
-            self.length -= 1
+        # If the index is at the end of the array
+        if index == self.length - 1:  # If index is found
+            popped = self.data[index] # Store value to be popped
+            self.data[index] = None   # Delete value in list
+            self.length -= 1          # Resize array
             return popped
 
         popped = self.data[index] # Get value to be popped
